@@ -19,8 +19,8 @@
 
     callApi = async () => {
       console.log("Calling API..");
-      const response = await fetch('/api/hello');
-      const body = await response.json();
+      response = await fetch('/api/hello');
+      body = await response.json();
 
       if (response.status !== 200)
       throw Error(body.message);

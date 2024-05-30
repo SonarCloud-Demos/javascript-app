@@ -28,6 +28,18 @@
       return body;
     };
 
+    callAnotherApi = async () => {
+      console.log("Calling different API..");
+      response = await fetch('/api/goodbye');
+      const body = await response.json();
+
+      if (response.status !== 200)
+      throw Error(body.message);
+
+      return body;
+    };
+      
+      
     handleSubmit = async e => {
       e.preventDefault();
       console.log("Sending form data to API");

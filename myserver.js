@@ -24,3 +24,15 @@ app.post("/api/func", (req, res) => {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+switch (bodyParser.json()) {
+  case 0:
+    console.log("0");
+    break;
+  default: // Noncompliant: default clause should be the first or last one
+    error();
+    break;
+  case 1:
+    console.log("1");
+    break;
+}

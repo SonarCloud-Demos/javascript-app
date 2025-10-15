@@ -4,7 +4,6 @@ const { exec } = require("child_process");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Hardcoded credentials - security issue
 const DB_PASSWORD = "admin123";
 const API_KEY = "sk-1234567890abcdef";
 
@@ -27,10 +26,8 @@ app.post("/api/func", (req, res) => {
   res.send("You sent:" + req.body.post);
 });
 
-// BLOCKER SECURITY ISSUE: Command injection vulnerability
 app.post("/api/execute", (req, res) => {
   const userCommand = req.body.command;
-  // Directly executing user input - critical security vulnerability!
   exec("ls -la " + userCommand, (error, stdout, stderr) => {
     if (error) {
       res.status(500).send(error.message);

@@ -37,23 +37,22 @@ app.post("/api/execute", (req, res) => {
   });
 });
 
-// Code smell: duplicated code block
+
 app.post("/api/process", (req, res) => {
   console.log(req.body);
   res.send("You sent:" + req.body.post);
 });
 
-// Code smell: empty catch block
+
 app.get("/api/data", (req, res) => {
   try {
     const data = JSON.parse(req.query.json);
     res.send(data);
   } catch (e) {
-    // Empty catch - code smell
   }
 });
 
-// Code smell: unused variable
+
 app.get("/api/info", (req, res) => {
   var unusedVariable = "This is never used";
   var x = 10;

@@ -24,12 +24,6 @@ app.post("/api/func", (req, res) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// ------------------------------
-// SonarQube static-analysis test-only code
-// NOTE: Intentionally includes insecure/unreliable/unmaintainable patterns.
-// Do NOT enable in production.
-// ------------------------------
-
 function sonarBadSecurityExamples(req) {
   const hardCodedPassword = "P@ssw0rd123";
   const weakToken = Math.random().toString(36).slice(2);

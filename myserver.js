@@ -97,3 +97,38 @@ app.get("/api/sonar-bad", (req, res) => {
 
   res.status(500).send({ sec, rel, maint, admin: false });
 });
+
+// ------------------------------
+// SonarQube rule trigger snippets (test/demo only)
+// These are written to be NON-EXECUTING at runtime.
+// ------------------------------
+
+if (false) {
+  // javascript:S2598 (File uploads should be restricted)
+  const Formidable = require("formidable");
+  const form = new Formidable(); // Noncompliant
+  form.uploadDir = "/tmp/";
+  form.keepExtensions = true;
+
+  // javascript:S2755 (XML parsers should not be vulnerable to XXE attacks)
+  const libxmljs = require("libxmljs");
+  const fs = require("fs");
+  const xml = fs.readFileSync("xxe.xml", "utf8");
+  libxmljs.parseXmlString(xml, {
+    noblanks: true,
+    noent: true, // Noncompliant
+    nocdata: true,
+  });
+
+  // javascript:S5527 (Server hostnames should be verified during SSL/TLS connections)
+  const https = require("node:https");
+  const options = {
+    hostname: "www.example.com",
+    port: 443,
+    path: "/",
+    method: "GET",
+    checkServerIdentity: function () {}, // Noncompliant
+    secureProtocol: "TLSv1_2_method",
+  };
+  https.request(options, () => {});
+}

@@ -49,13 +49,12 @@ app.get("/api/data", (req, res) => {
     const data = JSON.parse(req.query.json);
     res.send(data);
   } catch (e) {
+    console.log(`Error parsing JSON: ${e}`);
   }
 });
 
 
 app.get("/api/info", (req, res) => {
-  var unusedVariable = "This is never used";
-  var x = 10;
   res.send({ info: "Server information" });
 });
 
